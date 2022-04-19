@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My WebApp</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="js/jquery.plugin.min.js"></script>
+<script src="js/jquery.calendars.js"></script>
+<script src="js/jquery.calendars.plus.js"></script>
+<script src="js/jquery.calendars.coptic.js"></script>
+<script src="js/jquery.calendars.discworld.js"></script>
+<script src="js/jquery.calendars.ethiopian.js"></script>
+<script src="js/jquery.calendars.hebrew.js"></script>
+<script src="js/jquery.calendars.islamic.js"></script>
+<script>
+$(function() {
+	var calendar;
+	$('#calendar').change(function() {
+		calendar = $.calendars.instance($(this).val());
+		$('#default').text(calendar.local.dateFormat);
+		$('#input').val(calendar.local.dateFormat);
+	}).change();
+	$('#check').click(function() {
+		try {
+			var date = calendar.parseDate('', $('#input').val());
+			$('#input').val(calendar.formatDate($('#format').val(), date));
+		}
+		catch (e) {
+			alert(e);
+		}
+	});
+});
+</script>
+</head>
+<body>
+    <div class="container ">
+        <div class="wrapper">
+            <div class="right-side">
+                <form id="myForm" style=" margin-left: 35px">
+                    <div class="left-side">
+                        <div style="margin-top: 25px;">
+                            <label style="margin-right: 28px; font-size: 16px;"> <b>Date Birth:</b></label>
+                            <input style="width: 20%;" placeholder="dd/mm/yyyy" name="saeu" id="saeu" type="text">
+                                <label style=" margin-right: 15px; margin-left: 200px; font-size: 16px;"> <b>Country:</b></label>
+                                <input style="width: 20%;" placeholder="Enter arabic country" name="arabic" id="arabic" type="text">
+                        </div>
+                        <div style="margin-top: 25px;">
+                            <label style="margin-right: 28px; font-size: 16px;"> <b>Date Birth:</b></label>
+                            <input style="width: 20%;" placeholder="mm/dd/yyyy" name="us_date" id="us_date" type="text">
+                            <label style=" margin-right: 15px; margin-left: 200px; font-size: 16px;"> <b>Country:</b></label>
+                            <input style="width: 20%;" placeholder="Enter english country" name="english" id="english" type="text">
+                        </div>
+                        <div style="margin-top: 25px;">
+                            
+                            <b>Select a calendar:</b> <select style="width: 18%;" id="calendar">
+                                <option value="islamic" >Islamic</option>
+                                <option value="gregorian" selected>Gregorian</option>
+                            </select>
+                            <label style="margin-right: 28px; margin-left: 200px; font-size: 16px;"> <b>Salary:</b></label>
+                            <input style="width: 20%;" name="dollar" id="dollar" type="text"><br><br>
+                            <label style="margin-right: 28px; font-size: 16px;"> <b>Date Birth:</b></label>
+                             <input type="text" id="input"> (<span  id="default"></span>)
+                             <label style="margin-right: 28px; margin-left: 98px; font-size: 16px;"> <b>Salary:</b></label>
+                             <input style="width: 20%;" name="sar" id="sar" type="text">
+                            
+                            
+                        </div>
+                        <div style="margin-top: 25px; margin-left: 280px">
+                            <label style=" margin-right: 41px; margin-left: 200px; font-size: 16px;"> <b>Age:</b></label>
+                            <input style="width: 30%;" name="age" id="age" type="number" min="0" placeholder="0">
+                        </div>
+                        <div style="margin-top: 25px; margin-left: 280px">
+                            <label style=" margin-right: 31px; margin-left: 200px; font-size: 16px;"> <b>CGA:</b></label>
+                            <input style="width: 30%;" name="cgpa" id="cgpa" type="number" min="0" placeholder="0.0" step="0.01">
+                        </div>
+                    </div>
+                    <div style="margin-top: 35px; text-align: center;">
+                        <button id="submit" type="submit" style="padding: 4px 15px; margin-right: 25px;">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script src="main.js"></script>
+</body>
+</html>
